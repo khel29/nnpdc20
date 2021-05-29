@@ -1,0 +1,199 @@
+{% extends "base_fr.html" %} {% block title %}
+Page Mon Profil utilisateur
+{% endblock %} {% block content %}
+
+<form method="POST"> 
+
+<BR>
+
+<font size="+2">
+ Mon profil utilisateur</font>
+<BR>
+<BR>
+
+
+Liste des genres:  &emsp;  &emsp;  &emsp; 
+<select name= "genders" > 
+   {% for gender in  genders %} 
+    <option value= "{{gender[0]}}" 
+      {% if addit == 1 %} 
+      SELECTED
+      {% else %}
+         {% if infos[0][6] == gender[0]%} 
+           SELECTED
+         {% endif %} 
+      {% endif %}}
+
+>{{ gender[1]}}</option>
+   {% endfor %}
+</select>
+
+ <input  name='add gender'>
+ <input  type="submit" name='addg' value='ajouter genre'>
+
+   {%if username == pwd_admin_name %}
+   <input  type="submit" name='delg' value='supprimer genre'  onclick="if(!confirm('Are you sure to delete this gender?')){return false;}">
+   {% endif %} 
+
+<br>
+<BR>
+Liste des Statuts:  &emsp;  &emsp; &emsp;  
+<select name= "status" > 
+   {% for statu in status %} 
+   <option value= "{{statu[0]}}" 
+      {% if addit == 1 %} 
+      SELECTED
+      {% else %}
+         {% if infos[0][8] == statu[0]%} 
+           SELECTED
+         {% endif %} 
+      {% endif %} 
+
+ >{{ statu[1]}}</option>
+  {% endfor %}
+</select>
+ <input  name='add status'>
+ <input  type="submit" name='adds' value='ajouter statut'>
+   {%if username == pwd_admin_name %}
+   <input  type="submit" name='dels' value='supprimer statut'
+    onclick="if(!confirm('Are you sure to delete this status?')){return false;}">
+   {% endif %}
+<BR>
+<br>
+Liste des centres d'intérêt: 
+<select name= "interests" > 
+   {% for interest in interests %} 
+   <option value= "{{interest[0]}}"
+
+      {% if addit == 1 %} 
+      SELECTED
+      {% else %}
+         {% if infos[0][7] == interest[0]%} 
+           SELECTED
+         {% endif %} 
+      {% endif %} 
+
+>{{ interest[1]}}</option>
+  {% endfor %}
+</select>
+ <input  name='add interest'>
+ <input  type="submit" name='addi' value='ajouter interêt'>
+
+{%if username == pwd_admin_name %}
+ <input  type="submit" name='deli' value='supprimer intérêt'
+    onclick="if(!confirm('Are you sure to delete this interest?')){return false;}"> 
+{% endif %}
+
+<br>
+<br>
+ Nom ou pseudo: &emsp;  
+   {% if addit == 1 %} 
+ <input  name='name'>
+   {% else %} 
+   &nbsp; <b> {{infos[0][1]}}</b>
+   {% endif %} 
+<br>
+<br>
+ Date de naissance:
+   {% if addit == 1 %} 
+ <input name='birth date' type="date"> 
+   {% else %} 
+   &nbsp;  {{infos[0][2]}}
+   {% endif %} 
+<br>
+<br>
+Phrase de Présentation (230 caractères max):
+<br>
+   {% if addit == 1 %} 
+ <textarea  name='comment' value="" rows = "3" cols="40"  maxlength="230" <textarea name="testString" onkeypress="if (this.value.length >= 230) { return false; }"></textarea>
+   {% else %} 
+ <textarea  name='comment' value="" rows = "3" cols="40" maxlength="320" <textarea name="testString" onkeypress="if (this.value.length >= 230) { return false; }">{{infos[0][3]}}</textarea>
+   {% endif %} 
+<br>
+<br>
+E-mail:
+   {% if addit == 1 %} 
+ <input  name='email'>
+ 
+ <input type="checkbox" name="notification" id="notif">
+ <label for="notifs"> Notifications par e mail actives ?</label>
+
+   {% else %} 
+
+ <input  name='email' value=   {{infos[0][11]}}>
+
+ <input type="checkbox" name="notification" id="notif"
+ {% if infos[0][13] == 1 %}
+  checked
+ {% endif %} >
+ <label for="notifs"> Notifications par e mail actives ?</label>
+   
+   {% endif %} 
+<br>
+
+   {% if addit == 0 %} 
+<br>
+<br>
+    <input type="checkbox" name="changepwd" id="chpwd"  >
+    <label for="chpwd"> Changer le mot de passe ?</label>
+
+   {% endif %} 
+
+<br>
+Mot de passe: &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &ensp; 
+<input type="password"  name='password'> *	
+<br>
+<br>
+Confirmez votre mot de passe:
+<input type="password"  name='cpassword'> *
+<br>
+<br>
+   {% if addit == 1 %} 
+    Ajouter utilisateur: <input  type="submit" name='addu' value='ajouter'>
+<br>
+<br>
+<br>
+ <input  type="submit" name='btnbck' value='Retour'>
+   {% endif %} 
+<br>
+<br>
+<br>
+   {% if addit == 0 %} 
+     Modifier le profil utilisateur: <input  type="submit" name='modu' value='modifier'
+    onclick="if(!confirm('Are you sure to modify the data for this user?')){return false;}">
+<br>
+<br>
+<br>
+   <input  type="submit" name='btnbck' value='Retour'>
+<br>
+<br>
+<br>
+    Supprimer l'utilisateur: <input  type="submit" name='delu' value='supprimer'  onclick="if(!confirm('Are you sure to delete this user and all its associated sent and received messages to/from all of its contacts?')){return false;}">
+
+   {% endif %} 
+
+
+
+   {%if username == pwd_admin_name %}
+<br>
+<br>
+Liste des utilisateurs: 
+<select name= "listofusers" > 
+   {% for user in userslist %} 
+   <option value= "{{user[0]}}"
+      SELECTED
+>{{ user[0]}}</option>
+  {% endfor %}
+</select>
+
+<br>
+   <input  type="submit" name='deluser' value='suppr. user'  onclick="if(!confirm('Are you sure to delete the selected user?')){return false;}">
+<br>
+<br>
+   {% endif %} 
+
+
+
+</form>
+
+ {% endblock %}

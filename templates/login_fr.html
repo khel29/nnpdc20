@@ -1,0 +1,27 @@
+{% extends "base_fr.html" %}
+{% block title %}Login Page{% endblock %}
+
+{% block content %}
+
+        <br>
+<img src="/static/paris-balcony.jpg"  width=200px>
+<form action="#" method="post">
+        <br>
+        <br>
+	<p>Nom ou pseudo:</p>
+	<p><input type="text" name="nm" /></p>
+        <br>
+	<p>Mot de passe:</p>
+	<p><input type="password" name="pw" /></p>
+        <br>
+	<p><input type="submit" value="Bienvenue!" name='log'/></p>
+        <br>
+        <br>
+        <br>
+
+<input  type="submit" name='btnpwdo' value='m.d.p. oublié' width=200px
+ onclick="if(!confirm('Voulez-vous recevoir un lien par e-mail pour réinitialiser votre mot de passe?')){return false;}">
+        <br>
+
+</form>
+{% endblock %}
