@@ -1,11 +1,11 @@
 # nnpdc20
-Minimalist social media app on Raspberry Pi
+Minimalist social media ap, runs on a Raspberry Pi
 - Find other users with interests ans proximity criteria
 - Exchange messages and images with orher users.
+- User Interface in French for now.
 
 
-Setup of python flask app.
-User Interface in French for now.
+Setup of python flask app:
 
 Set up on a raspberry pi:
 1/ set Mysql users and database + configure database access passwords in password.py file
