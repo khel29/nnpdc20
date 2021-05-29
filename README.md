@@ -1,5 +1,6 @@
 # nnpdc20
 Minimalist social media ap, runs on a Raspberry Pi
+- Running example: https://nini.mywire.org
 - Find other users with interests ans proximity criteria
 - Exchange messages and images with orher users.
 - User Interface in French for now.
