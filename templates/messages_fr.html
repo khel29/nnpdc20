@@ -1,0 +1,156 @@
+{% extends "base_fr.html" %} 
+{% block title %}
+Page des Messages
+{% endblock %}         
+{% block content %}
+
+
+<form method="POST" enctype="multipart/form-data"> 
+<font size="+2">
+<br>
+<b> 
+Utilisateur en cours: 
+</b>
+{{user}} 
+<br>
+
+<br>
+<b>Utilisateur sélectionné: </b>
+
+
+   <table width=800px> <col> <tr><td> 
+    {{infomsg}} 
+      </td></tr></col></table>
+
+
+<br>
+   </font>
+   <br>
+ 
+   {% if dspmsgs==1 %} 
+   l'utilisateur {{user}} a échangé {{messages|length}} messages avec l'utilisateur sélectionné:
+   <br>
+   {% for message in  messages %} 
+   =========================================================
+   <br>
+   Message de: 
+   <b><font size="+3">{{message[0]}} 
+   </font></b>
+    , date: {{message[2]}} , 
+    chargé:{{message[3]}} fois par le receveur
+   <br> 
+
+  <table width=600px  style="overflow-wrap: break-word;" style="word-wrap: break-word" style="table-layout:fixed;"> <col width=600px> <tr><td width="600">
+   <font size="+2">
+   <b>{{mess[loop.index0]}}</b>
+   </font>
+  </td></tr> </col> </table> 
+
+   {% if (message[4]!='0') and (message[3]<=1) %} 
+    <img src="/static/{{imagefiles[loop.index0]}}" width=600px>
+    <br> 
+   {% else %}
+     {% if (message[3]>=2) and (message[4]!='0') %}
+       «image vue»
+     {% endif %}
+   {% endif %}
+
+   <br>
+
+
+
+
+  {% endfor %}
+  {% endif %}
+
+   =========================================================
+
+<BR>
+<BR>
+Selectionner un utilisateur: 
+<select name= "userslist" > 
+   {% for user in  userslist %} 
+    <option value= "{{user[0]}}" 
+    {% if selecteduserid|string == ((user[0])|string) %} 
+     SELECTED
+    {% endif %}
+    >
+   {{user[1]}}  , lc:{{user[2]}} 
+
+   {% for nr in notred %} 
+    {% if (nr[0])|string == ((user[0])|string) %} 
+    , {{nr[1]}} nouveaux msgs     
+    {% endif %}
+
+   {% endfor %}
+
+  </option>
+  {% endfor %}
+</select>
+
+   <input  type="submit" name='btns' value='sélectionner'>
+   <br>
+
+
+<BR>
+Nouveau message (256 caractères max):
+<BR>
+ <textarea  name='message' value="" rows = "3" cols="40"  maxlength="160" <textarea name="testString" onkeypress="if (this.value.length >= 160) { return false; }"></textarea>
+
+
+   {% if notifs==1 %} 
+
+<BR>
+ <input type="checkbox" name="notification" id="notifs" >
+ <label for="notifs"> Notification par e mail ?</label>
+&nbsp;&nbsp;   
+ <input type="checkbox" name="includen" id="incl" >
+ <label for="incl"> Inclure nom expéditeur ?</label>
+    {% endif %}
+
+
+
+<BR>
+<BR>
+ Image: <input type="file" name="file1">
+<BR>
+<BR>
+<BR>
+ <input  type="submit" name='btnm' value='envoyer'>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+ <input  type="submit" name='btnbck' value='Retour'>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+ <input  type="submit" name='btnd' value='supprimer tout'
+ onclick="if(!confirm('Etes vous sûr de supprimer tous vos messages de/vers l utilisateur sélectionné??')){return false;}"> 
+ les messages de/vers l'utilisateur sélectionné
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<div id="bottom"> </div>
+<script>
+document.getElementById( 'bottom' ).scrollIntoView();
+</script>
+
+</form>
+
+
+
+
+{% endblock %}
+
+
+

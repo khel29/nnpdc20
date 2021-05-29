@@ -1,0 +1,156 @@
+{% extends "base_fr.html" %} {% block title %} 
+Page de recherche 
+{% endblock %}
+{% block content %}
+
+<form method="POST"> 
+<font size="+2">
+Page de recherche de <b>{{usernam}}</b></font>
+<BR>
+<BR>
+
+Position: latitude:
+<input  name='lat' value={{pos[0]}}>
+longitude:
+<input  name='long' value={{pos[1]}}>
+<input  type="submit" name='btnpos' value='mettre à jour'>
+
+<BR>
+<BR>
+Coller ici les coordonnées au format <a href="https://openstreetmap.org">OpenStreetMap</a> :
+<input  name='address' value="{{address}}">
+<input  type="submit" name='btnpos2' value='lat, lng'> 
+
+<BR>
+<BR>
+<b>Filtres de recherche:</b>
+<BR>
+<BR>
+Liste des Genres:
+<select name= "genders" multiple> 
+   {% for gender in  genders %} 
+   <option 
+   {% if gender[0]|string in gact  %}}
+      SELECTED 
+   {% endif %}  
+
+  value= "{{gender[0]}}" >{{ gender[1]}}</option>
+  {% endfor %}
+</select>
+<input  type="submit" name='btng' value='tous'>
+<input  type="submit" name='btng2' value='aucun'>
+
+
+<BR>
+<BR>
+Liste des Statuts: 
+<select name= "status" multiple> 
+   {% for statu in status %} 
+   <option
+   {% if statu[0]|string in sact  %}}
+      SELECTED 
+   {% endif %}  
+   value= "{{statu[0]}}" >{{ statu[1]}}
+  </option>
+  {% endfor %}
+</select>
+<input  type="submit" name='btns' value='tous'>
+<input  type="submit" name='btns2' value='aucun'>
+
+<BR>
+<BR>
+Liste des intérêts: 
+<select name= "interests" multiple> 
+   {% for interest in interests %} 
+   <option 
+   {% if interest[0]|string in iact  %}}
+      SELECTED 
+   {% endif %}  
+   value= "{{interest[0]}}"> {{ interest[1]}}</option>
+  {% endfor %}
+</select>
+<input  type="submit" name='btni' value='tous'>
+<input  type="submit" name='btni2' value='aucun'>
+
+<br>
+<BR>
+Age min:
+ <input  name='agemin' value={{ageminact}}>
+max:
+<input  name='agemax' value={{agemaxact}}>
+ans
+<br>
+<BR>
+
+distance max:
+<input  name='dist' value={{distact}}> km
+<BR>
+<br>
+Dernière connexion ou actualisation de position après:
+<input name='last conn' type="datetime-local" value={{lastconn}}>
+<br>
+<br>
+<input  type="submit" name='btn' value='chercher'>
+   {% if found==1  and searched==1 %}
+    <br> 
+    <br> 
+    {{ closeids|length}} &nbsp; utilisateurs &nbsp; trouvés:
+     <select name= "fusers" > 
+     {% for nms in fnames %} 
+     <option  value= {{ closeids[loop.index-1]}} SELECTED> {{nms}}
+    </option>
+     {% endfor %}
+    </select>
+    <br>
+    <br>
+    <input  type="submit" name='btndet' value='détails'>
+    <br>
+    <br>
+    {% endif %}
+
+    {% if sid !=0 %}
+      <br>
+      <br>
+
+      <table width=600px> <col> <tr><td>
+      <b>Détails: </b> {{inff}}
+      </td></tr></col></table> 
+      <input  type='hidden' name='hiddenid' value=  {{sid}} >
+    {% endif %}
+
+   {% if (found==1  and searched==1) or  sid!=0%}
+    <br>
+    Message (256 charactères max):
+    <br>
+    <textarea  name='message' value="" rows = "3" cols="40" maxlength="256" <textarea name="testString" onkeypress="if (this.value.length >= 256) { return false; }"" ></textarea>
+
+    {% if noti==1 %}
+      <br>
+      <input type="checkbox" name="notification" id="notifs" >
+      <label for="notifs"> Notification par e mail ?</label>
+       &nbsp; &nbsp;
+      <input type="checkbox" name="includen" id="incl" >
+      <label for="incl"> Inclure nom expéditeur ?</label>
+    {% endif %}
+
+    <br>
+    <br>
+    <input  type="submit" name='btnmess' value='envoyer'>
+    {% endif %}
+    <br>
+
+
+   {% if found==0 and searched==1 %} 
+    <br>  "Pas d'utilisateur trouvé"  
+   {% endif %}  
+
+
+    <br>
+    <br>
+    <br>
+    <input  type="submit" name='btnbck' value='Retour'>
+
+	</form>
+
+
+{% endblock %}
