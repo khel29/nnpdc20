@@ -443,11 +443,11 @@ def index():
     infos=[]
     name=""
     cnx = mysql2.connect();cur=cnx.cursor()
-    cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used DESC')
+    cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used ASC;')
     genders =cur.fetchall()
-    cur.execute('SELECT status_id, status_desc FROM status ORDER BY used DESC')
+    cur.execute('SELECT status_id, status_desc FROM status ORDER BY used ASC;')
     status =cur.fetchall()
-    cur.execute('SELECT interest_id, interest_desc FROM interests  ORDER BY used DESC')
+    cur.execute('SELECT interest_id, interest_desc FROM interests  ORDER BY used ASC;')
     interests =cur.fetchall()
 
     if "user" in session:
@@ -483,22 +483,22 @@ def my_form_post():
 
 
     cnx = mysql2.connect();cur=cnx.cursor()
+
+
+    cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used ASC;')
+    genders =cur.fetchall()
+    cur.execute('SELECT status_id, status_desc FROM status ORDER BY used ASC;')
+    status =cur.fetchall()
+    cur.execute('SELECT interest_id, interest_desc FROM interests  ORDER BY used ASC;')
+    interests =cur.fetchall()
+
+    sizeg=len(genders)
+    sizes=len(status)
+    sizei=len(interests)
+
     if "user" in session:
-
-        cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used DESC')
-        genders =cur.fetchall()
-        cur.execute('SELECT status_id, status_desc FROM status ORDER BY used DESC')
-        status =cur.fetchall()
-        cur.execute('SELECT interest_id, interest_desc FROM interests  ORDER BY used DESC')
-        interests =cur.fetchall()
-
-        sizeg=len(genders)
-        sizes=len(status)
-        sizei=len(interests)
-
         cur.execute("SELECT name FROM users;")
         userslist =cur.fetchall()
-
         name = session["user"]
         cur.execute("SELECT *  FROM users WHERE name = '"+name+"';")
         infos =cur.fetchall()
@@ -509,8 +509,13 @@ def my_form_post():
             cur.execute("SELECT gender_desc FROM gender WHERE gender_desc = '"+text+"';")
             isany =cur.fetchall()
             if  len(isany)==0:
-                cur.execute("INSERT INTO gender(gender_desc) VALUE ('"+text+"');")
+                cur.execute("SELECT MIN(used)  FROM gender;")
+                ming =cur.fetchall()
+                cur.execute("INSERT INTO gender(gender_desc,used) VALUE ('"+text+"','"+str(ming[0][0])+"');")
                 cnx.commit()
+                cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used ASC;')
+                genders =cur.fetchall()
+
 
     if  'delg' in request.form:
         genre = request.form['genders']
@@ -537,6 +542,8 @@ def my_form_post():
         app.logger.info("del gender:"+txt)
         cur.execute(txt)
         cnx.commit()
+        cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used ASC;')
+        genders =cur.fetchall()
 
     if  'adds' in request.form and sizes<=75:
         text = nosql(request.form['add status'])
@@ -544,8 +551,12 @@ def my_form_post():
             cur.execute("SELECT status_desc FROM status WHERE status_desc = '"+text+"';")
             isany =cur.fetchall()
             if  len(isany)==0:
-                cur.execute("INSERT INTO status(status_desc) VALUE ('"+text+"');")
+                cur.execute("SELECT MIN(used)  FROM status;")
+                mins =cur.fetchall()
+                cur.execute("INSERT INTO status(status_desc,used) VALUE ('"+text+"','"+str(mins[0][0])+"');")
                 cnx.commit()
+                cur.execute('SELECT status_id, status_desc FROM status ORDER BY used ASC;')
+                status =cur.fetchall()
 
     if  'dels' in request.form:
         genre = request.form['status']
@@ -572,7 +583,8 @@ def my_form_post():
         app.logger.info("del status:"+txt)
         cur.execute(txt)
         cnx.commit()
-
+        cur.execute('SELECT status_id, status_desc FROM status ORDER BY used ASC;')
+        status =cur.fetchall()
 
     if  'addi' in request.form and sizei<=200:
         text = nosql(request.form['add interest'])
@@ -580,8 +592,12 @@ def my_form_post():
             cur.execute("SELECT interest_desc FROM interests WHERE interest_desc = '"+text+"';")
             isany =cur.fetchall()
             if  len(isany)==0:
-                cur.execute("INSERT INTO interests(interest_desc) VALUE ('"+text+"');")
+                cur.execute("SELECT MIN(used)  FROM interests;")
+                mini =cur.fetchall()
+                cur.execute("INSERT INTO interests(interest_desc,used) VALUE ('"+text+"','"+str(mini[0][0])+"');")
                 cnx.commit()
+                cur.execute('SELECT interest_id, interest_desc FROM interests  ORDER BY used ASC;')
+                interests =cur.fetchall()
 
     if  'deli' in request.form:
         genre = request.form['interests']
@@ -608,15 +624,9 @@ def my_form_post():
         app.logger.info("del interest:"+txt)
         cur.execute(txt)
         cnx.commit()
+        cur.execute('SELECT interest_id, interest_desc FROM interests  ORDER BY used ASC;')
+        interests =cur.fetchall()
 
-    cur.execute('SELECT gender_id, gender_desc FROM gender ORDER BY used DESC')
-    genders =cur.fetchall()
-    cur.execute('SELECT status_id, status_desc FROM status ORDER BY used DESC')
-    status =cur.fetchall()
-    cur.execute('SELECT interest_id, interest_desc FROM interests ORDER BY used DESC')
-    interests =cur.fetchall()
-
-   
     if  'deluser' in request.form:
         name = request.form['listofusers']
         app.logger.info("delete user: "+name)
