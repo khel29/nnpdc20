@@ -13,5 +13,7 @@ Setup of python flask app, for example on a raspberry pi:
 - 3/ use ddns + reverse proxy nginx for https
 - 4/ configure email smtp parameters in password.py file
 - 5/ Define admin user in password.py file
+  (only admin user can delete: status, gender, interests, users)
+
 - 6/ Launch app with admin rights: nohup python3 me_fr.py&
 - 7/ Read html help page to use app
