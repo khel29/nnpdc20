@@ -12,6 +12,7 @@ Setup of python flask app, for example on a raspberry pi:
 - 2/ install python3 dependancies with pip3 install ...
 - 3/ use ddns + reverse proxy nginx for https
 - 4/ configure email smtp parameters in password.py file
+    (I use Citadel mail server on the same Pi)
 - 5/ Define admin user in password.py file
   (only admin user can delete: status, genders, interests, users)
 
