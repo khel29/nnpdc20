@@ -18,4 +18,4 @@ pwd_smtp_port=465
 pwd_mail_server="mail.server"
 
 #admin user name
-pwd_admin_name="asmin name"
+pwd_admin_name="Admin name"
