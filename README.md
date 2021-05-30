@@ -15,5 +15,5 @@ Setup of python flask app, for example on a raspberry pi:
 - 5/ Define admin user in password.py file
   (only admin user can delete: status, genders, interests, users)
 
-- 6/ Launch app with admin rights: nohup python3 me_fr.py&
+- 6/ Launch app with admin rights: nohup python3 me_fr.py&  or unicorn
 - 7/ Read html help page to use app
