@@ -52,7 +52,7 @@ CREATE TABLE `gender` (
   `used` bigint(10) DEFAULT 0,
   PRIMARY KEY (`gender_id`),
   UNIQUE KEY `gender_desc` (`gender_desc`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `gender` (
 
 LOCK TABLES `gender` WRITE;
 /*!40000 ALTER TABLE `gender` DISABLE KEYS */;
-INSERT INTO `gender` VALUES (14,'Default',336),(20,'Dadougender',172),(21,'Tous',162),(22,'Neutre',162),(23,'Transgenre',162),(24,'Aucun',162),(25,'Non connu',162),(26,'Non binaire',162),(27,'Homme',162),(28,'Femme',162);
+INSERT INTO `gender` VALUES (14,'Default',1),(21,'Tous',1),(22,'Neutre',1),(23,'Transgenre',1),(24,'Aucun',1),(25,'Non connu',1),(26,'Non binaire',1),(27,'Homme',4),(28,'Femme',4),(29,'Lesbienne',1),(30,'Gay',1),(31,'Bi',1);
 /*!40000 ALTER TABLE `gender` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `interests` (
 
 LOCK TABLES `interests` WRITE;
 /*!40000 ALTER TABLE `interests` DISABLE KEYS */;
-INSERT INTO `interests` VALUES (17,'Default',343),(18,'Video Games',345),(20,'Shopping',343),(21,'Trekking',343),(23,'Tennis',343),(24,'Nature',343),(25,'La cafetière du futur',172),(26,'Lecture',162),(27,'Musique',162),(28,'Vélo',162),(29,'Course à pieds',162),(30,'Echecs',124),(31,'Surf',124),(32,'Amis',124),(33,'Gėnėalogie',124),(34,'Photo',110);
+INSERT INTO `interests` VALUES (17,'Default',1),(18,'Video Games',1),(20,'Shopping',3),(21,'Trekking',1),(23,'Tennis',1),(24,'Nature',3),(25,'La cafetière du futur',1),(26,'Lecture',3),(27,'Musique',3),(28,'Vélo',1),(29,'Course à pieds',3),(30,'Echecs',1),(31,'Surf',1),(32,'Amis',3),(33,'Gėnėalogie',1),(34,'Photo',1);
 /*!40000 ALTER TABLE `interests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +108,7 @@ CREATE TABLE `messages` (
   `image_load_counter` int(11) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`message_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,6 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (192,33,20,'3507060e','0',0,0,'2021-05-19 00:48:14'),(193,33,20,'380609','0',0,0,'2021-05-19 00:48:20');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +142,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'Star',530),(11,'Default',346),(16,'Pas tes oignons',160),(17,'Célibataire',160),(19,'Marrié(e)',160),(20,'Barbare',160),(22,'En couple',124),(23,'Pacsé(e)',124),(24,'Magicien(ne)',65);
+INSERT INTO `status` VALUES (1,'Star',1),(11,'Default',1),(16,'Pas tes oignons',1),(17,'Célibataire',1),(19,'Marrié(e)',4),(20,'Barbare',1),(22,'En couple',4),(23,'Pacsé(e)',1),(24,'Magicien(ne)',1);
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +171,7 @@ CREATE TABLE `users` (
   `nbrconns` int(11) DEFAULT 0,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +180,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (20,'Niakniak','1977-05-03 00:00:00','Développeur de cette appli','2021-05-03 01:54:20','2021-05-18 22:36:55',27,24,19,48.102570,-4.338150,'nnpdc@ninipeaudchien.org','d43061298b53cc8f77bef3e646184465a4e4c495',0,0),(22,'BigDadou','1991-12-09 00:00:00','Je supporte pas le café','2021-05-03 17:23:45','2021-05-03 22:17:12',20,25,11,48.316600,-4.281000,'davaine.francois@hotmail.fr','55af5e84fe43fac3b9c22915463b0a9a27440575',0,0),(23,'Geopot','1948-06-18 00:00:00','Joueur de billard','2021-05-09 18:09:18','2021-05-12 21:30:38',27,33,19,48.107210,-4.352870,'Gp@yopmail.com','46a4064453a2d04541af55941d8611032a147443',0,0),(33,'nn','2017-05-16 00:00:00','Hhgfft','2021-05-16 21:50:29','2021-05-20 02:33:57',28,34,24,0.000000,0.000000,'nico.guillou@gmail.com','07962e32beac4da179b30c06f1c1e71bd220f782',0,0),(34,'paf','2021-05-20 00:00:00','','2021-05-20 02:55:20','2021-05-20 02:56:51',28,34,24,0.000000,0.000000,'','ee3717503d44179dc77c7c9f6368d8774adc4de7',0,1);
+INSERT INTO `users` VALUES (20,'Niakniak','1977-05-03 00:00:00','Développeur de cette appli','2021-05-03 01:54:20','2021-05-30 02:44:31',27,24,19,48.102570,-4.338150,'nnpdc@ninipeaudchien.org','d43061298b53cc8f77bef3e646184465a4e4c495',0,18),(22,'BigDadou','1991-12-09 00:00:00','Je supporte pas le café','2021-05-03 17:23:45','2021-05-03 22:17:12',14,25,11,48.316600,-4.281000,'davaine.francois@hotmail.fr','55af5e84fe43fac3b9c22915463b0a9a27440575',0,0),(23,'Geopot','1948-06-18 00:00:00','Joueur de billard','2021-05-09 18:09:18','2021-05-12 21:30:38',27,33,19,48.107210,-4.352870,'Gp@yopmail.com','46a4064453a2d04541af55941d8611032a147443',0,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -194,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-20  3:03:42
+-- Dump completed on 2021-05-30  3:32:10
