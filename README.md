@@ -7,7 +7,7 @@ Minimalist social media app, runs on a Raspberry Pi
 - User Interface in French for now.
 
 Setup of python flask app, for example on a raspberry pi:
-- 1/ set Mysql users and database + 
+- 1/ set Mysql/MariaDB users and database + 
    configure database access passwords in password.py file
 - 2/ install python3 dependancies with pip3 install ...
 - 3/ use ddns + reverse proxy nginx for https
