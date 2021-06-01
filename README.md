@@ -18,3 +18,13 @@ Setup of python flask app, for example on a raspberry pi:
 
 - 6/ Launch app with admin rights: nohup python3 me_fr.py&  (or with unicorn)
 - 7/ Read html help page to use app
+
+
+
+Some Improvement ideas, not implemented yet:
+
+- have a common special user named 'all' where you can post and view messages from/to all the profiles. 
+(Sort of public messages chat, without any images).
+- possibility to delete all the messages individually if you are its author with a small delete button near each message (+ confirm popup.)
+- Make english version of the app. Problem: ther will be 2 distinct databases, sometimes sharing the same geographic locations. You know how to solve this?
+- have the lets encrypt keys working to avoid main mail providers spam box for the notifications.
